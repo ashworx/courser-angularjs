@@ -7,18 +7,25 @@
     <style>
       .message { font-size: 1.3em; font-weight: bold; }
     </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script src="app.js"></script>
+
   </head>
-<body>
+<body ng-app="LunchChecker" ng-controller="LunchCheckerController as lunchController">
    <div class="container">
      <h1>Lunch Checker</h1>
 
          <div class="form-group">
              <input id="lunch-menu" type="text"
              placeholder="list comma separated dishes you usually have for lunch"
-             class="form-control">
+             class="form-control" ng-model="lunchItems">
+             <p ng-show="noItems>0 && noItems<=3">Enjoy!</p>
+             <p ng-show="noItems>3">Too much!</p>
+             <p ng-show="noItems<=0">Please enter data first</p>
          </div>
          <div class="form-group">
-             <button class="btn btn-default">Check If Too Much</button>
+             <button class="btn btn-default" ng-click="lunchController.checkLunch()">Check If Too Much</button>
          </div>
          <div class="form-group message">
            <!-- Your message can go here. -->
